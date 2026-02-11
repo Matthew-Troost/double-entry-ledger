@@ -1,3 +1,4 @@
+import { MaxTwoDecimalsConstraint } from '@/common/validators/max-decimals-constraint.validator';
 import { Type } from 'class-transformer';
 import {
   ArrayNotEmpty,
@@ -9,6 +10,7 @@ import {
   IsString,
   IsUUID,
   Min,
+  Validate,
   ValidateNested,
 } from 'class-validator';
 
@@ -20,6 +22,7 @@ class EntryPayload {
   @IsNotEmpty()
   @IsNumber()
   @Min(0.01, { message: '"amount" must be a minimum of 0.01' })
+  @Validate(MaxTwoDecimalsConstraint)
   public amount: number;
 
   @IsNotEmpty()
