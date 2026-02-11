@@ -2,7 +2,7 @@
   "name": "conduit-double-entry-ledger",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Matthew Troost",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

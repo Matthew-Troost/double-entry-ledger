@@ -10,6 +10,14 @@ A backend service implementing a **double-entry accounting ledger**.
   nvm use
   ```
 
+## Dependencies
+
+Mentionable dependencies included:
+
+- `class-validator` For input DTO field validation
+- `class-transformer` For input DTO field validation (specifically nested objects)
+- `lodash` For simplified array and object manipulation
+
 ## Installation
 
 Install dependencies:
@@ -81,7 +89,7 @@ npm run test
 ### Assumptions:
 
 - Account names are not unique.
-- Transaction name are not unique.
+- Transaction names are not unique.
 - Account balances can go into the negative.
 - Only catering for USD and at most 2 decimal places. If other currencies need to be supported, especially crypto currencies, we'd need to ensure precision around decimal places.
 
