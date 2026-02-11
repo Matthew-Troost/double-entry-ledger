@@ -33,6 +33,8 @@ export class AccountService {
     return this.accountDataAccess.notExists(ids);
   }
 
+  /* in production, this method would be called from inside a db transaction 
+  and would accept the entity manager to handle db queries and mutations here */
   public recalculateBalance(id: string): void {
     const account = this.getById(id);
 
