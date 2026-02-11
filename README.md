@@ -34,6 +34,8 @@ To run the API on port 5000:
 npm run start:dev
 ```
 
+NOTE: port 5000 is a common development port and may already be in use on your machine. If so, the port can be changed in `src > apps > api-public > mains.ts` line 22.
+
 #### Creating an account:
 
 ```bash
