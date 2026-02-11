@@ -18,12 +18,56 @@ Install dependencies:
 npm install
 ```
 
-## Running the Application
+## Running the API
 
 To run the API on port 5000:
 
 ```
 npm run start:dev
+```
+
+#### Creating an account:
+
+```bash
+curl --location --request POST \
+  --url localhost:5000/accounts \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+    "name": "Test Account 1",
+    "direction": "debit",
+    "id": "71cde2aa-b9bc-496a-a6f1-34964d05e6fd"
+  }'
+```
+
+#### Getting an account:
+
+```bash
+curl --location --request GET \
+  --url 'localhost:5000/accounts/71cde2aa-b9bc-496a-a6f1-34964d05e6fd' \
+  --header 'Accept: application/json'
+```
+
+#### Creating a transaction:
+
+```bash
+curl --location --request POST \
+     --url 'localhost:5000/transactions' \
+     --header 'Content-Type: application/json' \
+     --data-raw '{
+       "name": "test",
+       "entries": [
+         {
+           "direction": "debit",
+           "account_id": "71cde2aa-b9bc-496a-a6f1-34964d05e6fd",
+           "amount": 100
+         },
+         {
+           "direction": "credit",
+           "account_id": "dbf17d00-8701-4c4e-9fc5-6ae33c324309",
+           "amount": 100
+         }
+       ]
+     }'
 ```
 
 ## Running Tests
@@ -39,6 +83,7 @@ npm run test
 - Account names are not unique.
 - Transaction name are not unique.
 - Account balances can go into the negative.
+- Only catering for USD and at most 2 decimal places. If other currencies need to be supported, especially crypto currencies, we'd need to ensure precision around decimal places.
 
 ### Considerations:
 

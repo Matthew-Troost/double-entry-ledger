@@ -59,7 +59,7 @@ describe('AccountController', () => {
       });
     });
 
-    it.only('should return the payload for a newly created account', async () => {
+    it('should return the payload for a newly created account', async () => {
       const response = await request(app.getHttpServer())
         .post('/accounts')
         .send({

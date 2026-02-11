@@ -12,7 +12,16 @@ import {
 import { AccountAlreadyExistsError } from '@/modules/ledger/providers/account/errors';
 import { AccountNotFoundError } from '@/common/errors';
 
-@Catch(Error)
+const notFoundErrors = [NotFoundException];
+
+const conflictErrors = [
+  TransactionAlreadyExistsError,
+  AccountAlreadyExistsError,
+];
+
+const badRequestErrors = [InvalidEntriesError, AccountNotFoundError];
+
+@Catch(...notFoundErrors, ...conflictErrors, ...badRequestErrors)
 export class DomainExceptionFilter implements ExceptionFilter {
   catch(exception: Error, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
@@ -46,10 +55,3 @@ export class DomainExceptionFilter implements ExceptionFilter {
     });
   }
 }
-
-const notFoundErrors = [NotFoundException];
-const conflictErrors = [
-  TransactionAlreadyExistsError,
-  AccountAlreadyExistsError,
-];
-const badRequestErrors = [InvalidEntriesError, AccountNotFoundError];
